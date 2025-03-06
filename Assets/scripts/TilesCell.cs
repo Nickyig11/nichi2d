@@ -10,4 +10,4 @@ public class TilesCell : MonoBehaviour
 
     public bool empty => tile == null;
     public bool occupied => tile != null;
-}
+}               
