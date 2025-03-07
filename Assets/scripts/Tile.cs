@@ -41,5 +41,46 @@ public class Tile : MonoBehaviour
         transform.position = cell.transform.position;
     }
 
+    public void MoveTo(TilesCell cell)
+    {
+        if (this.cell != null)
+        {
+            this.cell.tile = null;
+        }
+
+        this.cell = cell;
+        this.cell.tile = this;
+
+        StartCoroutine(Animate(cell.transform.position));
+        
+    }
+
+    public void Merge(TilesCell cell)
+    {
+        if (this.cell != null)
+        {
+            this.cell.tile = null;
+        }
+        this.cell = null;
+
+        Destroy(gameObject);
+    }
+
+    private IEnumerator Animate(Vector3 to)
+{
+    float elapsed = 0f;
+    float duration = 0.1f;
+
+    Vector3 from = transform.position;
+
+    while (elapsed < duration)
+    {
+        transform.position = Vector3.Lerp(from, to, elapsed / duration);
+        elapsed += Time.deltaTime;
+        yield return null;
+    }
+
+    transform.position = to;
+}
 }
 
