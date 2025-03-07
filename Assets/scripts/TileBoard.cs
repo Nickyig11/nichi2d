@@ -87,7 +87,7 @@ public class TileBoard : MonoBehaviour
                 // TODO: merging
                 if(CanMerge(tile, adjacent.tile))
                 {
-                    
+                    Merge(tile, adjacent.tile);
                 }
                 break;
             }

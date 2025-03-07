@@ -51,7 +51,7 @@ public class Tile : MonoBehaviour
         this.cell = cell;
         this.cell.tile = this;
 
-        StartCoroutine(Animate(cell.transform.position));
+        StartCoroutine(Animate(cell.transform.position,false));
         
     }
 
@@ -62,25 +62,29 @@ public class Tile : MonoBehaviour
             this.cell.tile = null;
         }
         this.cell = null;
-
-        Destroy(gameObject);
+        StartCoroutine(Animate(cell.transform.position,true));
+        
     }
 
-    private IEnumerator Animate(Vector3 to)
-{
-    float elapsed = 0f;
-    float duration = 0.1f;
-
-    Vector3 from = transform.position;
-
-    while (elapsed < duration)
+    private IEnumerator Animate(Vector3 to, bool merging)
     {
-        transform.position = Vector3.Lerp(from, to, elapsed / duration);
-        elapsed += Time.deltaTime;
-        yield return null;
-    }
+        float elapsed = 0f;
+        float duration = 0.1f;
 
-    transform.position = to;
-}
+        Vector3 from = transform.position;
+
+        while (elapsed < duration)
+        {
+            transform.position = Vector3.Lerp(from, to, elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = to;
+
+        if(merging){
+            Destroy(gameObject);
+        }
+    }
 }
 
