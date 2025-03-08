@@ -9,10 +9,12 @@ public class Tile : MonoBehaviour
     public TileState state { get; private set; }
     public TilesCell cell { get; private set; }
     public int number { get; private set; }
+    public bool locked { get;  set; }
 
     private Image background;
     private TextMeshProUGUI text;
 
+    
     private void Awake()
     {
         background = GetComponent<Image>();
@@ -62,6 +64,8 @@ public class Tile : MonoBehaviour
             this.cell.tile = null;
         }
         this.cell = null;
+        cell.tile.locked = true;
+
         StartCoroutine(Animate(cell.transform.position,true));
         
     }

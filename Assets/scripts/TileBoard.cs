@@ -1,9 +1,12 @@
+
+
 using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
 
 public class TileBoard : MonoBehaviour
 {
+    public GameManager gameManager;
     public Tile tilePrefab;
     public TileState[] tileStates;
     private TilesGrid grid;
@@ -16,14 +19,20 @@ public class TileBoard : MonoBehaviour
         tiles = new List<Tile>(16);
     }
 
-    private void Start()
+    public void ClearBoard()
     {
-        CreateTile();
-        CreateTile();
+        foreach (var cell in grid.cells) {
+            cell.tile = null;
+        }
 
+        foreach (var tile in tiles) {
+            Destroy(tile.gameObject);
+        }
+
+        tiles.Clear();
     }
 
-    private void CreateTile()
+    public void CreateTile()
     {
         Tile tile = Instantiate(tilePrefab, grid.transform);
         tile.SetState(tileStates[0],2);
@@ -84,10 +93,10 @@ public class TileBoard : MonoBehaviour
         {
             if (adjacent.occupied)
             {
-                // TODO: merging
                 if(CanMerge(tile, adjacent.tile))
                 {
                     Merge(tile, adjacent.tile);
+                    return true;
                 }
                 break;
             }
@@ -107,7 +116,7 @@ public class TileBoard : MonoBehaviour
 
     private bool CanMerge(Tile a, Tile b)
     {
-        return a.number == b.number;
+        return a.number == b.number && !b.locked;
     }
 
     private void Merge(Tile a, Tile b)
@@ -140,12 +149,65 @@ public class TileBoard : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         waiting = false;
 
+        foreach(var tile in tiles)
+        {
+            tile.locked = false;
+        }
         if (tiles.Count != grid.size) 
         {
             CreateTile();
+        }     
+        if (CheckForGameOver()) 
+        {
+            gameManager.GameOver();
         }
-        
-        // TODO: create new tile
-        // TODO: check for game over
+        if (CheckForGameWin())
+        {
+            gameManager.GameWin();
+        }
+    }
+    private bool CheckForGameOver()
+    {
+        if (tiles.Count != grid.size) {
+            return false;
+        }
+
+        foreach (var tile in tiles)
+        {
+            TilesCell up = grid.GetAdjacentCell(tile.cell, Vector2Int.up);
+            TilesCell down = grid.GetAdjacentCell(tile.cell, Vector2Int.down);
+            TilesCell left = grid.GetAdjacentCell(tile.cell, Vector2Int.left);
+            TilesCell right = grid.GetAdjacentCell(tile.cell, Vector2Int.right);
+
+            if (up != null && CanMerge(tile, up.tile)) {
+                return false;
+            }
+
+            if (down != null && CanMerge(tile, down.tile)) {
+                return false;
+            }
+
+            if (left != null && CanMerge(tile, left.tile)) {
+                return false;
+            }
+
+            if (right != null && CanMerge(tile, right.tile)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private bool CheckForGameWin()
+    {
+        foreach (var tile in tiles)
+        {
+            if (tile.number == tile.state.targetNumber)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
