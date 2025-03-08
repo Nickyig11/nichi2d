@@ -77,6 +77,12 @@ public class GameManager : MonoBehaviour
     {
         board.enabled = false;
         gameWin.interactable = true;
+        gameWin.blocksRaycasts = true; 
+
+        gameStart.interactable = false;  
+        gameStart.blocksRaycasts = false;
+        gameOver.interactable = false;    
+        gameOver.blocksRaycasts = false;
 
         StartCoroutine(Fade(gameWin, 1f, 1f));
     }
