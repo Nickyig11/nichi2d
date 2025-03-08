@@ -7,13 +7,15 @@ public class GameManager : MonoBehaviour
     public CanvasGroup gameOver;
     public CanvasGroup gameStart;
     public CanvasGroup gameWin;
-    private int targetScore;
+    public int targetScore;
 
     private void Start()
     {
-    StartGame();
+    // StartGame();
     }
+
     public void StartGame() {
+        Debug.Log("se lanza el juego");
         gameStart.alpha = 1f;
         gameStart.interactable = true;
         gameStart.blocksRaycasts = true; 
@@ -21,13 +23,26 @@ public class GameManager : MonoBehaviour
         StartCoroutine(Fade(gameStart, 1f, 1f));
     }
 
+    public void ResetGameStart()
+    {
+        Debug.Log("se vuelve a lanzar el juego");
+        gameStart.alpha = 1f;
+        gameStart.interactable = true;
+        gameStart.blocksRaycasts = true;
+        Time.timeScale = 0;
+    }
     public void StartGameWithDifficulty(int difficulty)
     {
+        
+
         targetScore = difficulty;
         Debug.Log("Empezando juego con dificultad: " + difficulty);
         NewGame();
+
         gameStart.alpha = 0f;
         gameStart.interactable = false;
+        gameStart.blocksRaycasts = false;
+
         Time.timeScale = 1;
     }
     public void NewGame()
@@ -46,8 +61,14 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        board.enabled = false;
-        gameOver.interactable = true;
+    board.enabled = false;
+    gameOver.interactable = true;
+    gameOver.blocksRaycasts = true; 
+
+    gameStart.interactable = false;  
+    gameStart.blocksRaycasts = false;
+    gameWin.interactable = false;    
+    gameWin.blocksRaycasts = false;
 
         StartCoroutine(Fade(gameOver, 1f, 1f));
     }

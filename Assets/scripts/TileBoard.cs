@@ -203,7 +203,7 @@ public class TileBoard : MonoBehaviour
     {
         foreach (var tile in tiles)
         {
-            if (tile.number == tile.state.targetNumber)
+            if (gameManager.targetScore == tile.state.targetNumber)
             {
                 return true;
             }
