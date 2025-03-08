@@ -1,63 +1,50 @@
 <p align="center">
-  <img src="imagen-removebg-preview.png" alt="Título de tu Juego" width="250"/>
+  <img src="imagen-removebg-preview.png" alt="NICHI2048" width="250"/>
 </p>
 
-## **NICHI2048**
+# ¡Bienvenido a **NICHI2048**! 
+Una reinterpretación del clásico 2048, donde la estrategia se une a la personalización.
 
-¡Bienvenido a NICHI2048, una reinterpretación fresca del clásico juego de puzzles 2048! En esta versión también podrás seleccionar tu nivel de dificultad al inicio de la partida.
+---
+
+## 🕹️ **Objetivo**
+Combina fichas para alcanzar el valor objetivo, ¡pero con la libertad de elegir la dificultad que más te desafíe!
+
+---
+
+## 🎨 **Estilo Visual**
+Colores magenta y una interfaz intuitiva para una experiencia de juego atractiva y adictiva.
 
 <p align="center">
-  <img src="image.png" alt="Captura de pantalla del Juego" width="600"/>
+  <img src="image.png" alt="Pantalla de Inicio NICHI2048" width="600"/>
 </p>
 
-## **Estructura del Proyecto**
+<p align="center">
+  <img src="image-1.png" alt="Jugando NICHI2048" width="600"/>
+</p>
 
-El juego se construye sobre una base de componentes de Unity interconectados, organizados de la siguiente manera:
+---
 
-*   **Canvas Principal:** Contenedor de todos los elementos de la UI, incluyendo el menú de inicio, el tablero de juego (Grid), los paneles de Game Over y Game Win.
+## 🧱 **Estructura del Proyecto**
 
-*   **Grid (Mapa de Fondo):** Representa el área de juego donde se desplazan las fichas.
+*   **Canvas Principal:** El corazón de la UI, gestionando el menú de inicio, el tablero, y las pantallas de Game Over/Win.
+*   **Grid:** El campo de batalla donde las fichas se fusionan y la estrategia cobra vida.
+*   **Tiles:** Los bloques numéricos, listos para ser combinados en una búsqueda por el número final.
 
-*   **Tiles (Fichas):** Son las piezas numéricas que se combinan en el juego.
+---
 
-*   **Background (Fondo):** Representa el fondo.
+## ⚙️ **Componentes Clave del Código**
 
-## **Descripción del Código**
+*   **GameManager.cs:** El director de la orquesta, controlando el flujo del juego, gestionando pantallas, la selección de dificultad, y detectando el final del juego.
+*   **TileBoard.cs:** El estratega en jefe, gestionando el tablero, creando fichas y orquestando la lógica de movimiento y fusión.
+*   **TilesGrid.cs, TilesRow.cs, TilesCell.cs:** El trío dinámico que define la estructura del tablero de juego.
+*   **TileState.cs:** El estilista, definiendo la apariencia de cada ficha (color, texto, valor objetivo).
+*   **Tile.cs:** La estrella individual, controlando el comportamiento de cada ficha en su viaje de fusión.
 
-El código del juego se divide en los siguientes scripts:
+---
 
-*   **GameManager.cs:** (El Corazón del Juego)
-    Este script controla el flujo general:
+## ✨ ¡Muestra tu ingenio y paciencia en **NICHI2048**! ✨
 
-    *   Gestionar las pantallas de Game Start, Game Over y Game Win utilizando CanvasGroups.
-    *   Permitir la selección de dificultad al inicio del juego.
-    *   Iniciar un nuevo juego con la dificultad seleccionada.
-    *   Detectar cuándo el juego termina (Game Over o Game Win) y mostrar la pantalla correspondiente.
-    *   Funciones esenciales como `NewGame()`, `GameOver()`, `GameWin()` y `StartGameWithDifficulty()`.
-    *   Utiliza `Time.timeScale` para pausar el juego durante la pantalla de inicio y la función `Fade` para animar la aparición y desaparición de los menús.
-
-*   **TileBoard.cs:**
-    Este script gestiona el tablero del juego, la creación de fichas, la lógica de movimiento y fusión, y la detección de Game Over y Game Win. Interactúa con el `GameManager` para informar sobre el estado del juego.
-
-*   **TilesGrid.cs:**
-    Representa la cuadrícula del tablero de juego. Proporciona métodos para acceder a las celdas y obtener celdas adyacentes.
-
-*   **TilesRow.cs:**
-    Representa una fila en la cuadrícula del tablero de juego.
-
-*   **TilesCell.cs:**
-    Representa una celda individual en la cuadrícula del tablero de juego.
-
-*   **TileState.cs:**
-    Define el estado visual de una ficha (color de fondo, color de texto, valor objetivo para Game Win).
-
-*   **Tile.cs:**
-    Controla el comportamiento individual de cada ficha, incluyendo su estado visual, movimiento y fusión.
-
-## **Demostración del Juego**
-
-[![Descripción](image-1.png)]
-
-![Descripción](2025-03-08 03-29-07.gif)
-
-Aquí tienes una muestra en vídeo de mi juego, ¡disfrútala!
+<p align="center">
+  <img src="VideoPrueba.gif" alt="Gameplay NICHI2048"/>
+</p>
