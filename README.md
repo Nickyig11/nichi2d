@@ -56,7 +56,8 @@ El código del juego se divide en los siguientes scripts:
 
 ## **Demostración del Juego**
 
-[![Descripción](image-1.png)](2025-03-08 03-29-07.mp4)
+[![Descripción](image-1.png)]
 
+![Descripción](2025-03-08 03-29-07.gif)
 
 Aquí tienes una muestra en vídeo de mi juego, ¡disfrútala!
