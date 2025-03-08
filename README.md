@@ -1,14 +1,13 @@
 <p align="center">
-  <img src="URL_DE_TU_IMAGEN_DE_TITULO" alt="Título de tu Juego" width="400"/>
+  <img src="imagen-removebg-preview.png" alt="Título de tu Juego" width="250"/>
 </p>
-![imagen](https://github.com/user-attachments/assets/c6dc43eb-360a-48e7-95d2-13f33fc620be)
 
-## **[Nombre de tu Juego]**
+## **NICHI2048**
 
-¡Bienvenido a [Nombre de tu Juego], una reinterpretación fresca y desafiante del clásico juego de puzzles 2048! En esta versión, no solo tendrás que combinar fichas para alcanzar la meta, sino que también podrás seleccionar tu nivel de dificultad al inicio de la partida. ¿Estás listo para el desafío?
+¡Bienvenido a NICHI2048, una reinterpretación fresca del clásico juego de puzzles 2048! En esta versión también podrás seleccionar tu nivel de dificultad al inicio de la partida.
 
 <p align="center">
-  <img src="URL_DE_TU_IMAGEN_DEL_JUEGO" alt="Captura de pantalla del Juego" width="600"/>
+  <img src="image.png" alt="Captura de pantalla del Juego" width="600"/>
 </p>
 
 ## **Estructura del Proyecto**
@@ -21,12 +20,14 @@ El juego se construye sobre una base de componentes de Unity interconectados, or
 
 *   **Tiles (Fichas):** Son las piezas numéricas que se combinan en el juego.
 
+*   **Background (Fondo):** Representa el fondo.
+
 ## **Descripción del Código**
 
 El código del juego se divide en los siguientes scripts:
 
 *   **GameManager.cs:** (El Corazón del Juego)
-    Este script es el núcleo del juego. Controla el flujo general, desde el inicio hasta el final. Sus responsabilidades incluyen:
+    Este script controla el flujo general:
 
     *   Gestionar las pantallas de Game Start, Game Over y Game Win utilizando CanvasGroups.
     *   Permitir la selección de dificultad al inicio del juego.
@@ -55,6 +56,7 @@ El código del juego se divide en los siguientes scripts:
 
 ## **Demostración del Juego**
 
-[INSERTA AQUÍ UN ENLACE A TU VÍDEO DE DEMOSTRACIÓN]
+[![Descripción](image-1.png)](2025-03-08 03-29-07.mp4)
+
 
 Aquí tienes una muestra en vídeo de mi juego, ¡disfrútala!
